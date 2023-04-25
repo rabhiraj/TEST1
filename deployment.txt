@@ -1,0 +1,15 @@
+#!/bin/bash
+
+WAMP_USER="root"
+WAMP_HOST="172.27.5.73"
+WAMP_PORT="8080"
+WAMP_DIR="C:\wamp64\www\jenkins1"
+git_repository_url=https:"//github.com/rabhiraj/sample1.git"
+ssh -p $wamp_ssh_port $wamp_username@$wamp_server_ip << EOF
+if [ -d "$(basename "$git_repository_url" .git)" ]; then
+cd "$(basename "$git_repository_url" .git)"
+git pull
+else
+ git clone "$git_repository_url"
+fi
+EOF
